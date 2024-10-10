@@ -1,7 +1,7 @@
 ## A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering
 
 **CG+DCA** is an exact algorithm, based of the branch-and-bound technique, which combines Column Generation (CG)
-with Dynamic Constraint Aggregation (DCA) the solving the minimum sum-of-squares clustering problem as described in the paper ["A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering"](https://arxiv.org/abs/...). This repository contains the C++ source code and the datasets used for the experiments.
+with Dynamic Constraint Aggregation (DCA) the solving the minimum sum-of-squares clustering problem as described in the paper ["A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering"](https://arxiv.org/abs/2410.06187). This repository contains the C++ source code and the datasets used for the experiments.
 
 ## Installation
 **CG+DCA** is entirely open-source and freely accessible, with the exception of the commercial code [Gurobi](https://www.gurobi.com/) used for solving linear programming problems.
@@ -60,7 +60,7 @@ The dataset file must contain 2D coordinates and include a header line with the 
 ```
 n 2
 x_11 x_12
-x_21 w_22
+x_21 x_22
 ...
 ...
 x_n1 x_n2
