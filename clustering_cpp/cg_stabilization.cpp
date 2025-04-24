@@ -143,7 +143,7 @@ DualBounds compute_bounds(MustLinkMapping &mlm, std::vector<Point> &P, std::vect
         // compute the cost of the clustering 'j' where we omit all the points in component 'i'
         c_tilde_i = computePartialSSE(j_first, P, tmp_assignment);
         lb[i] = c_bar_i - c_tilde_i;
-        lb[i] = lb[i] - lb[i] * 0.0001;
+        lb[i] = lb[i] - lb[i] * TOL_B;
 
         /********************************** UPPER BOUND ESTIMATION *********************************/
 
@@ -157,7 +157,7 @@ DualBounds compute_bounds(MustLinkMapping &mlm, std::vector<Point> &P, std::vect
         // compute the cost of the clustering 'j' where we moved all the points of component 'i'
         c_tilde_i = computePartialSSE(j_second, P, tmp_assignment);
         ub[i] = c_tilde_i - c_bar_i;
-        ub[i] = ub[i] + ub[i] * 0.0001;
+        ub[i] = ub[i] + ub[i] * TOL_B;
 
         if (ub[i] < lb[i]) lb[i] = 0.0; // avoid infeasibility when the quality of the initial clustering is not good
 
@@ -208,7 +208,7 @@ std::vector<int> cluster_recovery_stabilized(int n, std::vector<std::vector<int>
     int cluster_id = 0;
     for (int i = 0; i < n_cols; i++) {
         double v = rms->getVarByName("C" + std::to_string(i)).get(GRB_DoubleAttr_X);
-        if (v <= 1.0 + 0.01 && v >= 1.0 - 0.01) {
+        if (v <= 1.0 + TOL_V && v >= 1.0 - TOL_V) {
             for (auto &elem: or_cols[i])
                 assignment[elem] = cluster_id;
             cluster_id++;
@@ -232,7 +232,7 @@ GRBModel *mip_post_processing_stabilized(GRBModel *rms, int &bin_vars) {
     bool is_integer = true;
     for (int i = 0; i < n_cols; i++) {
         double v = rms_discrete->getVarByName("C" + std::to_string(i)).get(GRB_DoubleAttr_X);
-        if (v > 0.01 && v < 1 - 0.01) {
+        if (v > TOL_V && v < 1 - TOL_V) {
             bin_vars++;
             rms_discrete->getVarByName("C" + std::to_string(i)).set(GRB_CharAttr_VType, GRB_BINARY);
             is_integer = false;

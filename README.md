@@ -1,7 +1,7 @@
 ## A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering
 
 **CG+DCA** is an exact algorithm, based of the branch-and-bound technique, which combines Column Generation (CG)
-with Dynamic Constraint Aggregation (DCA) the solving the minimum sum-of-squares clustering problem as described in the paper ["A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering"](https://arxiv.org/abs/2410.06187). This repository contains the C++ source code and the datasets used for the experiments.
+with Dynamic Constraint Aggregation (DCA) the solving the minimum sum-of-squares clustering problem as described in the paper ["A column generation algorithm with dynamic constraint aggregation for minimum sum-of-squares clustering"](https://doi.org/10.1287/ijoc.2024.0938). This repository contains the C++ source code and the datasets used for the experiments.
 
 ## Installation
 **CG+DCA** is entirely open-source and freely accessible, with the exception of the commercial code [Gurobi](https://www.gurobi.com/) used for solving linear programming problems.
@@ -11,7 +11,7 @@ Ubuntu and Debian instructions:
 1) Install Gurobi (>= 10.0) and compile its C++ libraries
 
 2) Open the makefile `clustering_cpp/Makefile`
-    - Set the variable `gurobi_path` with your Gurobi installation folder.
+    - Set the variable `GUROBI_HOME` with your Gurobi installation folder.
 
 3) Compile the code:
 

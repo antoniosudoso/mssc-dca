@@ -11,6 +11,8 @@
 #include <set>
 
 #define TOL 1e-5
+#define TOL_V 1e-2
+#define TOL_B 1e-4
 
 struct MustLinkMapping
 {

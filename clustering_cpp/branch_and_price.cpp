@@ -82,7 +82,7 @@ std::pair<int, int> get_branching_decision(int node_id, int n, GRBModel *model, 
         pairs.reserve(n_cols);
         for (int i = 0; i < n_cols; i++) {
             double v = model->getVarByName("C" + std::to_string(i)).get(GRB_DoubleAttr_X);
-            if (v > 0.01 && v < 1 - 0.01) {
+            if (v > TOL_V && v < 1 - TOL_V) {
                 pairs.emplace_back(i, std::min(v, 1 - v));
             }
         }
@@ -92,7 +92,7 @@ std::pair<int, int> get_branching_decision(int node_id, int n, GRBModel *model, 
         pairs.reserve(n_cols);
         for (int i = 0; i < n_cols; i++) {
             double v = vars[i].get(GRB_DoubleAttr_X);
-            if (v > 0.01 && v < 1 - 0.01) {
+            if (v > TOL_V && v < 1 - TOL_V) {
                 pairs.emplace_back(i, std::min(v, 1 - v));
             }
         }
